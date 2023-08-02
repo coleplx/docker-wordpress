@@ -78,6 +78,6 @@ RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-EXPOSE 80
+EXPOSE 8080
 
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1/wp-login.php
