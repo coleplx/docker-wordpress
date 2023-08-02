@@ -13,4 +13,5 @@ if [ ! "$(ls -A "/var/www/wp-content" 2>/dev/null)" ]; then
     # Generate secrets
     curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 fi
-exec "$@"
+
+/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
