@@ -52,6 +52,7 @@ RUN chown -R nobody.nobody /var/www
 # WordPress
 ENV WORDPRESS_VERSION 6.2.2
 ENV WORDPRESS_SHA1 a355d1b975405a391c4a78f988d656b375683fb2
+ENV HTTP_PORT 8080
 
 RUN mkdir -p /usr/src
 
@@ -73,6 +74,8 @@ RUN chown nobody.nobody /usr/src/wordpress/wp-config.php && chmod 640 /usr/src/w
 # Append WP secrets
 COPY wp-secrets.php /usr/src/wordpress
 RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/wordpress/wp-secrets.php
+
+RUN chown -R nobody.nobody /var/www/wp-content
 
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
