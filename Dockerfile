@@ -45,7 +45,6 @@ COPY config/php.ini /etc/php81/conf.d/zzz_custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # wp-content volume
-VOLUME /var/www/wp-content
 WORKDIR /var/www/wp-content
 RUN chown -R nobody.nobody /var/www
 
@@ -74,8 +73,6 @@ RUN chown nobody.nobody /usr/src/wordpress/wp-config.php && chmod 640 /usr/src/w
 # Append WP secrets
 COPY wp-secrets.php /usr/src/wordpress
 RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/wordpress/wp-secrets.php
-
-RUN chown -R nobody.nobody /var/www/wp-content
 
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
